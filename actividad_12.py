@@ -1,5 +1,5 @@
-students = []
-grade = []
+students = {}
+grade = {}
 
 while True:
     try:
@@ -16,7 +16,11 @@ while True:
 
     else:
         num_students = num_students
-        break
+        if num_students > 0:
+            break
+        else:
+            print(f"Intente de nuevo")
+
 
 for i in range(num_students):
     print(f"Estudiante #{i+1}")
@@ -36,7 +40,4 @@ for i in range(num_students):
 
         else:
             count_grades_student = count_grades_student
-
-
-for j in range(count_grades_student):
-    grades_student = int(input(f"Notas del estudiante {i+1}: "))
+            break
