@@ -1,6 +1,4 @@
 students = {}
-grade = {}
-
 while True:
     try:
         num_students = int(input(f"¿Qué cantidad de estudiantes ingresara? "))
@@ -23,11 +21,13 @@ while True:
 
 
 for i in range(num_students):
-    print(f"Estudiante #{i+1}")
+    print(f"\nEstudiante #{i+1}")
     name_student = input(f"Nombre del estudiante {i+1}: ")
     while True:
         try:
-            count_grades_student = int(input(f"¿Cuántas notas desea agregar al estudiante {i+1}?: "))
+            count_grades_student = int(input(f"\n¿Cuántas notas desea ingresar para {name_student}?: "))
+            if count_grades_student >= 0:
+                break
 
         except ValueError:
             print(f"Error: ingreso mal el tipo de valor")
@@ -36,8 +36,24 @@ for i in range(num_students):
             print(f"Error: ingreso mal el tipo de valor")
 
         except Exception as e:
-            print(f"Se produjo un error inesperado: {e}")
+            print(f"Error: {e}")
 
-        else:
-            count_grades_student = count_grades_student
-            break
+    sum = 0
+    for j in range(count_grades_student):
+        while True:
+            try:
+                nota = float(input(f"Ingrese la nota #{j + 1}: "))
+                if nota >= 0 and nota <= 100:
+                    sum += nota
+                    break
+                else:
+                    print(f"La nota debe de ser mayor o igual a 0")
+            except ValueError:
+                print(f"Ingrese una nota válida.")
+            except TypeError:
+                print(f"Error: ingreso mal el tipo de valor")
+
+    avg = sum / count_grades_student
+    students[name_student] = avg
+
+print(students)
