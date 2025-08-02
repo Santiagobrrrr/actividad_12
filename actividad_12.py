@@ -47,13 +47,33 @@ for i in range(num_students):
                     sum += nota
                     break
                 else:
-                    print(f"La nota debe de ser mayor o igual a 0")
+                    print(f"La nota debe de ser entre 0 y 100")
+
             except ValueError:
                 print(f"Ingrese una nota válida.")
+
             except TypeError:
                 print(f"Error: ingreso mal el tipo de valor")
 
-    avg = sum / count_grades_student
-    students[name_student] = avg
+            except Exception as e:
+                print(f"Error: {e}")
+    try:
+        avg = sum / count_grades_student
+        students[name_student] = avg
 
-print(students)
+    except ZeroDivisionError:
+        print(f"Error: no puede dividir por 0")
+
+    except Exception as e:
+        print(f"Error: {e}")
+
+    else:
+        break
+
+print(f"\n--- Promedios ---")
+if len(students) == 0:
+    print("No hay promedios ingresados")
+
+else:
+    for estudiante, avg in students.items():
+        print(f"{estudiante}: {avg}")
